@@ -32,7 +32,7 @@ This updates the [official Apache Cordova Facebook Plugin](https://github.com/ph
  * Main nib file base name
  * Main nib file base name (iPad)
 
- Or, delete these two entries from the main app's *.plist file using raw XML view:
+ Or, delete these two entries (and their empty string tags)from the main app's *.plist file using raw XML view:
   ```xml
   <key>NSMainNibFile</key>
   <key>NSMainNibFile~ipad</key>
