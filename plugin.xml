@@ -22,8 +22,8 @@
         <clobbers target="FB" />
     </js-module>
 
-    <!-- <preference name="APP_ID" />
-    <preference name="APP_NAME" /> -->
+    <preference name="APP_ID" />
+    <preference name="APP_NAME" />
 
     <!-- ios -->
     <platform name="ios">
@@ -38,27 +38,19 @@
         <source-file src="src/ios/FacebookConnectPlugin.m" />
 
         <config-file target="*-Info.plist" parent="FacebookAppID">
-            <string>109998089149025</string>
+            <string>$APP_ID</string>
         </config-file>
             
         <config-file target="*-Info.plist" parent="FacebookDisplayName">
-            <string>Bar-Golf-Stars</string>
+            <string>$APP_NAME</string>
         </config-file>
-
-        <!-- Fixes an XCode 5 crash resulting from blank spaces entered in string tag -->
-        <!-- <config-file target="*-Info.plist" parent="NSMainNibFile">
-            <string></string>
-        </config-file>
-        <config-file target="*-Info.plist" parent="NSMainNibFile~ipad">
-            <string></string>
-        </config-file> -->
             
         <config-file target="*-Info.plist" parent="CFBundleURLTypes">
             <array>
                 <dict>
                   <key>CFBundleURLSchemes</key>
                   <array>
-                    <string>fb109998089149025</string>
+                    <string>fb$APP_ID</string>
                   </array>
                 </dict>
             </array>
