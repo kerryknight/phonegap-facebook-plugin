@@ -11,9 +11,7 @@ This updates the [official Apache Cordova Facebook Plugin](https://github.com/ph
 * plugin.xml - to meet Phonegap 3.0+ plugin inclusion specs
 * cdv-plugin-fb-connect.js - to be more in line with core Apache Cordova plugin design
 
-1. Install this plugin instead of the official one via Phonegap CLI:
-<pre>cordova plugin add https://github.com/kerryknight/phonegap-facebook-plugin.git --variable APP_ID=<id> --variable APP_NAME=<name></pre>
-<pre>cordova plugin add https://github.com/kerryknight/phonegap-facebook-plugin.git</pre>
+1. IMPORTANT: I couldn't get phonegap or cordova to properly install this plugin with app id and app name parameters, so do not try to install this plugin prior to building the project with phonegap. We'll use plugman AFTER building with phonegap to install the plugin.
 
 2. Within your Phonegap project's config.xml file, add an entry to include the plugin (Note: the feature tag's name parameter has been modified slightly from the official plugin's):
 ```xml
@@ -26,7 +24,11 @@ This updates the [official Apache Cordova Facebook Plugin](https://github.com/ph
 
 4. Your Phonegap project build should succeed with no errors. 
 
-5. IMPORTANT: Before you can actually compile and run the project from within XCode, you'll need to make two very quick changes. If you try to compile it as is at this point, you'll get a "Could not load NIB in bundle:..." exception (I'm using XCode 5). This is due to two extraneous entries in the app's main .plist file that, for some reason, are being added in the build process with lots of whitespace in their <string> tags (I'm assuming the Phonegap CLI build process is doing this?). Even attempting to remove the whitespace with <config-file> tags in the plugin's plugin.xml didn't solve the issue. So, as a quick, manual fix (I'm sure those of you out there resourceful enough could work these entry deletions into your task runner of choice's workflow:)):
+5. Now, install the plugin using plugman:
+ <pre>plugman install --platform ios --project platforms/ios/ --plugin https://github.com/kerryknight/phonegap-facebook-plugin.git  --variable APP_ID=MyFBAppID --variable APP_NAME=MyFBAppDisplayName</pre>
+ where MyFBAppID = your Facebook App ID and MyFBAppDisplayName = your Facebook App Display Name. You can find those on the Edit Settings page [here](https://developers.facebook.com/apps).
+
+6. IMPORTANT: Before you can actually compile and run the project from within XCode, you'll need to make two very quick changes. If you try to compile it as is at this point, you'll get a "Could not load NIB in bundle:..." exception (I'm using XCode 5). This is due to two extraneous entries in the app's main .plist file that, for some reason, are being added in the build process with lots of whitespace in their <string> tags (I'm assuming the Phonegap CLI build process is doing this?). Even attempting to remove the whitespace with <config-file> tags in the plugin's plugin.xml didn't solve the issue. So, as a quick, manual fix (I'm sure those of you out there resourceful enough could work these entry deletions into your task runner of choice's workflow:)):
 
  Delete these two entries from the main app's *.plist file from plist view in Xcode:
  * Main nib file base name
@@ -38,13 +40,13 @@ This updates the [official Apache Cordova Facebook Plugin](https://github.com/ph
   <key>NSMainNibFile~ipad</key>
   ``` 
 
-6. You should now be able to build and run the app from within XCode.
+7. You should now be able to build and run the app from within XCode.
 
-7. Bonus: Aside from the FacebookConnectPlugin-related deprecations, XCode 5 is also adding a Dependency Analysis Warning: "Warning: no rule to process file...blah blah blah...FacebookSDK-3.5.2-Release.a' of type archive.ar....blah"
+8. Bonus: Aside from the FacebookConnectPlugin-related deprecations, XCode 5 is also adding a Dependency Analysis Warning: "Warning: no rule to process file...blah blah blah...FacebookSDK-3.5.2-Release.a' of type archive.ar....blah"
 
  Using the technique outlined [here](http://joytek.blogspot.tw/2011/09/xcode-4-warning-no-rule-to-process-file.html), you can fix this warning. It's literally as easy as going to your Project Target's Build Phases section, typing in "Facebook" in the search bar, and dragging the FacebookSDK-3.5.2-Release.a file from Compile Sources to Copy Bundle Resources. So far, this fix seems to work for me without issue.
 
-8. Do a final project clean, build/run and Facebook away!
+9. Do a final project clean, build/run and Facebook away!
 
 For any and all other documentation, please refer to the [official plugin's page](https://github.com/phonegap/phonegap-facebook-plugin). 
 
