@@ -29,16 +29,14 @@ This updates the [official Apache Cordova Facebook Plugin](https://github.com/ph
  5. IMPORTANT: Before you can actually compile and run the project from within XCode, you'll need to make two very quick changes. If you try to compile it as is at this point, you'll get a "Could not load NIB in bundle:..." exception (I'm using XCode 5). This is due to two extraneous entries in the app's main .plist file that, for some reason, are being added in the build process with lots of whitespace in their <string> tags (I'm assuming the Phonegap CLI build process is doing this?). Even attempting to remove the whitespace with <config-file> tags in the plugin's plugin.xml didn't solve the issue. So, as a quick, manual fix:
 
  Delete these two entries from the main app's *.plist file using raw XML view:
- * <key>NSMainNibFile</key>
- * <key>NSMainNibFile~ipad</key>
+ * ```xml<key>NSMainNibFile</key>``` 
+ * ```xml<key>NSMainNibFile~ipad</key>``` 
 
- - or -
-
- Delete these two entries from the main app's *.plist file from plist view in Xcode:
+ OR, delete these two entries from the main app's *.plist file from plist view in Xcode:
 * Main nib file base name
 * Main nib file base name (iPad)
 
-I'm sure those of you out there resourceful enough could work these entry deletions into your task runner of choice's workflow :)
+> > I'm sure those of you out there resourceful enough could work these entry deletions into your task runner of choice's workflow :)
 
 6. You should now be able to build and run the app from within XCode.
 
