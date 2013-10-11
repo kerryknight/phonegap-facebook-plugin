@@ -5,54 +5,60 @@
       version="1.0">
 
     <name>Facebook Connect</name>
-    <description>A branch of the official plugin for Facebook in Apache Cordova/Phonegap to support Phonegap CLI and Phonegap 3.0</description>
+    <description>A fork of the official plugin for Facebook in Apache Cordova/Phonegap to support Phonegap CLI and Phonegap 3.0</description>
     <license>Apache 2.0</license>
-
+    <keywords>cordova,facebook</keywords>
 
     <engines>
       <engine name="cordova" version=">=2.3.0" />
+      <engine name="cordova" version="2.9.0" />
+      <engine name="cordova" version="3.0.0" />
+      <engine name="cordova" version=">3.0.0" />
     </engines>
 
-    <asset src="www/cdv-plugin-fb-connect.js" target="cdv-plugin-fb-connect.js" />
     <asset src="www/facebook-js-sdk.js" target="facebook-js-sdk.js" />
 
-    <!-- <js-module src="www/cdv-plugin-fb-connect.js" name="cdv-plugin-fb-connect">
-        <clobbers target="cdv-plugin-fb-connect" />
+    <js-module src="www/cdv-plugin-fb-connect.js" name="cdv-plugin-fb-connect">
+        <clobbers target="FB" />
     </js-module>
 
-    <js-module src="www/facebook-js-sdk.js" name="FB">
-        <clobbers target="FB" />
-    </js-module> -->
-
-    <preference name="APP_ID" />
-    <preference name="APP_NAME" />
+    <!-- <preference name="APP_ID" />
+    <preference name="APP_NAME" /> -->
 
     <!-- ios -->
     <platform name="ios">
 
         <config-file target="config.xml" parent="/*">
-        <feature name="org.apache.cordova.facebook.Connect">
-            <param name="ios-package" value="FacebookConnectPlugin"/>
-        </feature>
+            <feature name="FB">
+                <param name="ios-package" value="FacebookConnectPlugin"/>
+            </feature>
         </config-file>
 
         <header-file src="src/ios/FacebookConnectPlugin.h" />
         <source-file src="src/ios/FacebookConnectPlugin.m" />
 
         <config-file target="*-Info.plist" parent="FacebookAppID">
-            <string>$APP_ID</string>
+            <string>109998089149025</string>
         </config-file>
             
         <config-file target="*-Info.plist" parent="FacebookDisplayName">
-            <string>$APP_NAME</string>
+            <string>Bar-Golf-Stars</string>
         </config-file>
+
+        <!-- Fixes an XCode 5 crash resulting from blank spaces entered in string tag -->
+        <!-- <config-file target="*-Info.plist" parent="NSMainNibFile">
+            <string></string>
+        </config-file>
+        <config-file target="*-Info.plist" parent="NSMainNibFile~ipad">
+            <string></string>
+        </config-file> -->
             
         <config-file target="*-Info.plist" parent="CFBundleURLTypes">
             <array>
                 <dict>
                   <key>CFBundleURLSchemes</key>
                   <array>
-                    <string>fb$APP_ID</string>
+                    <string>fb109998089149025</string>
                   </array>
                 </dict>
             </array>
