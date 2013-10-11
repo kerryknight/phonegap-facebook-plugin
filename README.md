@@ -1,4 +1,4 @@
-## This is a work in progress--do not download plugin or follow along until this note is removed!
+## If you're reading this, this is a work in progress--do not download plugin or follow along until this note is removed!
 
 ### Phonegap 3.0 CLI Automatic Installation of Apache Cordova Facebook Plugin for iOS
 
@@ -12,22 +12,15 @@ This updates the [official Apache Cordova Facebook Plugin](https://github.com/ph
 * cdv-plugin-fb-connect.js - to be more in line with core Apache Cordova plugin design
 
 1. Install this plugin instead of the official one via Phonegap CLI:
-<pre>&lt; 
-
-cordova plugin add https://github.com/kerryknight/phonegap-facebook-plugin.git --variable APP_ID=<id> --variable APP_NAME=<name>
-
-cordova plugin add https://github.com/kerryknight/phonegap-facebook-plugin.git
-
- /&gt;</pre>
+<pre>cordova plugin add https://github.com/kerryknight/phonegap-facebook-plugin.git --variable APP_ID=<id> --variable APP_NAME=<name></pre>
+<pre>cordova plugin add https://github.com/kerryknight/phonegap-facebook-plugin.git</pre>
 
 2. Within your Phonegap project's config.xml file, add an entry to include the plugin (Note: the feature tag's name parameter has been modified slightly from the official plugin's):
-<pre>&lt; 
-
+```xml
 <feature name="com.phonegap.plugins.facebookconnect">
     <param name="ios-package" value="FacebookConnectPlugin" />
 </feature>
-
- /&gt;</pre>
+``` 
 
  3. Build your app with Phonegap CLI from the project directory: `phonegap build ios`
 
