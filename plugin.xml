@@ -22,8 +22,8 @@
         <clobbers target="FB" />
     </js-module>
 
-    <preference name="APP_ID" />
-    <preference name="APP_NAME" />
+    <!-- <preference name="APP_ID" />
+    <preference name="APP_NAME" /> -->
 
     <!-- ios -->
     <platform name="ios">
